@@ -106,6 +106,135 @@
 <body>
 
     <div id="auth-screen">
+        <div cla<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rupsha Public Welfare Foundation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --text-color: #1c1e21;
+            --card-bg: #ffffff;
+            --header-bg: #0f1c2c;
+            --accent-color: #00ffaa;
+            --font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            --primary: #00ffcc;
+            --form-card: #121212;
+            --input-bg: #1a1a1a;
+            --error: #ff4d4d;
+            --notice-color: #ffcc00;
+            --fb-blue: #1877F2;
+        }
+
+        .dark-theme {
+            --bg-color: #121212;
+            --text-color: #e4e6eb;
+            --card-bg: #242526;
+            --header-bg: #000000;
+        }
+
+        body { font-family: var(--font-family); background: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: all 0.4s ease; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Auth Screen Styles - Unchanged */
+        #auth-screen { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #0f1c2c; padding: 20px; box-sizing: border-box; }
+        .auth-container { background: white; padding: 30px; border-radius: 20px; width: 100%; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); color: #333; text-align: center; }
+        .auth-input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; box-sizing: border-box; font-size: 15px; margin-top: 10px; font-family: inherit; }
+        .pass-wrapper { position: relative; width: 100%; }
+        .toggle-icon { position: absolute; right: 12px; top: 22px; cursor: pointer; color: #666; font-size: 14px; }
+        .auth-btn { width: 100%; padding: 13px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 16px; transition: 0.3s; font-family: inherit; }
+        .btn-primary { background: #0f1c2c; color: white; }
+        .btn-link { background: none; color: #1877F2; font-size: 14px; border: none; cursor: pointer; margin-top: 12px; text-decoration: underline; font-family: inherit; }
+        #login-form, #signup-form, #reset-form { display: none; }
+        
+        /* Main Layout Styles */
+        #main-content { display: none; flex-direction: column; min-height: 100vh; background: var(--bg-color); }
+        header { background: var(--header-bg); padding: 30px 20px; color: white; position: relative; border-bottom: 4px solid var(--accent-color); text-align: center; }
+        .top-controls { position: absolute; top: 15px; right: 15px; display: flex; gap: 10px; }
+        .control-btn { background: rgba(255,255,255,0.1); border: 1px solid var(--accent-color); color: white; padding: 6px 12px; border-radius: 15px; cursor: pointer; font-size: 12px; }
+        .logo-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--accent-color); margin-bottom: 10px; object-fit: cover; }
+        .user-welcome { font-size: 14px; color: var(--accent-color); font-weight: bold; margin-bottom: 5px; }
+
+        /* --- New Improved Dashboard Design --- */
+        .dashboard-main { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 40px 15px; }
+        
+        .meet-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .dark-theme .meet-card { border: 1px solid #333; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+
+        .meet-icon-circle {
+            width: 60px; height: 60px; background: rgba(40, 167, 69, 0.1);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px auto; color: #28a745; font-size: 24px;
+        }
+
+        .meet-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px; margin: 0 0 15px 0; color: var(--text-color);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .meet-card p {
+            font-size: 13px; line-height: 1.6; color: #666; margin-bottom: 25px;
+        }
+        .dark-theme .meet-card p { color: #aaa; }
+
+        .btn-stack { display: flex; flex-direction: column; gap: 12px; }
+
+        .join-btn {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 14px; border-radius: 14px; text-decoration: none;
+            font-weight: 700; font-size: 14px; transition: 0.3s;
+            color: #fff; font-family: 'Orbitron', sans-serif;
+        }
+
+        .google-meet { background: #ea4335; box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3); }
+        .zoom-meet { background: #2d8cff; box-shadow: 0 4px 15px rgba(45, 140, 255, 0.3); }
+
+        .join-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+
+        /* --- Active Simulation Styles (Added) --- */
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(40, 167, 69, 0.1); padding: 5px 12px;
+            border-radius: 20px; margin-bottom: 15px; border: 1px solid rgba(40, 167, 69, 0.2);
+        }
+        .status-dot {
+            width: 8px; height: 8px; background: #28a745; border-radius: 50%;
+            position: relative;
+        }
+        .status-dot::after {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            background: #28a745; border-radius: 50%;
+            animation: pulse-ring 1.5s infinite; left: 0; top: 0;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        .status-text { font-size: 11px; font-weight: 700; color: #28a745; text-transform: uppercase; }
+        /* -------------------------------------- */
+
+        footer { padding: 15px; background: var(--header-bg); color: #888; text-align: center; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <div id="auth-screen">
         <div class="auth-container">
             <img src="https://i.ibb.co.com/ycsrjKp6/20251128-004458.jpg" alt="Logo" class="logo-img">
             
@@ -156,6 +285,11 @@
 
         <main class="dashboard-main">
             <div class="meet-card">
+                <div class="status-badge">
+                    <div class="status-dot"></div>
+                    <span class="status-text">Active now <span id="userLiveBadge">...</span></span>
+                </div>
+
                 <div class="meet-icon-circle">
                     <i class="fas fa-video"></i>
                 </div>
@@ -229,10 +363,9 @@
             createUserWithEmailAndPassword(auth, email, pass).then((res) => {
                 updateProfile(res.user, { displayName: name }).then(() => {
                     sendEmailVerification(res.user).then(() => {
-                        // ভেরিফিকেশন মেসেজ আপডেট
                         notify("<b>সফলভাবে অ্যাকাউন্ট তৈরি হয়েছে!</b><br>আপনার ইমেইলে একটি ভেরিফিকেশন লিঙ্ক পাঠানো হয়েছে। লিঙ্কটি ক্লিক করে ভেরিফাই করুন। <br><i>(ইনবক্সে না পেলে Spam মেসেজে দেখুন)</i>", "success");
                         signOut(auth); 
-                        setTimeout(() => showForm('login'), 8000); // ৮ সেকেন্ড পর লগইন ফর্মে যাবে
+                        setTimeout(() => showForm('login'), 8000); 
                     });
                 });
             }).catch(e => notify("⚠️ রেজিস্ট্রেশন হয়নি! ইমেইল সঠিক কি না বা পাসওয়ার্ড কমপক্ষে ৬ অক্ষর কি না দেখুন।", "err"));
@@ -256,7 +389,12 @@
                 if(user.emailVerified) {
                     document.getElementById('auth-screen').style.display = 'none';
                     document.getElementById('main-content').style.display = 'flex';
-                    document.getElementById('userNameDisplay').innerText = `স্বাগতম, ${user.displayName || 'ইউজার'}`;
+                    
+                    // এখানে নাম সেট করা হচ্ছে
+                    const displayName = user.displayName || 'ইউজার';
+                    document.getElementById('userNameDisplay').innerText = `স্বাগতম, ${displayName}`;
+                    document.getElementById('userLiveBadge').innerText = displayName;
+
                 } else {
                     notify("<b>আপনার ইমেইলটি ভেরিফাই করা হয়নি!</b><br>অনুগ্রহ করে আপনার ইমেইল ইনবক্স (অথবা Spam ফোল্ডার) চেক করুন এবং লিঙ্কটি ক্লিক করুন।", "err");
                     signOut(auth);
